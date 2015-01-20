@@ -67,7 +67,10 @@ public:
     ::ERR_remove_thread_state(0);
     ::EVP_cleanup();
     ::CRYPTO_cleanup_all_ex_data();
-    ::CONF_modules_unload(1);
+    // airtime: start
+    // boringssl does not have this API
+    // ::CONF_modules_unload(1);
+    // airtime: end
 #if !defined(OPENSSL_NO_ENGINE)
     ::ENGINE_cleanup();
 #endif // !defined(OPENSSL_NO_ENGINE)
