@@ -204,7 +204,9 @@ const boost::system::error_code& engine::map_error_code(
   if (BIO_wpending(ext_bio_))
   {
     ec = boost::system::error_code(
-        ERR_PACK(ERR_LIB_SSL, 0, SSL_R_SHORT_READ),
+        // airtime: start
+        ERR_PACK(ERR_LIB_SSL, SSL_R_SHORT_READ),
+        // airtime: end
         boost::asio::error::get_ssl_category());
     return ec;
   }
@@ -218,7 +220,9 @@ const boost::system::error_code& engine::map_error_code(
   if ((::SSL_get_shutdown(ssl_) & SSL_RECEIVED_SHUTDOWN) == 0)
   {
     ec = boost::system::error_code(
-        ERR_PACK(ERR_LIB_SSL, 0, SSL_R_SHORT_READ),
+        // airtime: start
+        ERR_PACK(ERR_LIB_SSL, SSL_R_SHORT_READ),
+        // airtime: end
         boost::asio::error::get_ssl_category());
   }
 
